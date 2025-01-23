@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjouterPersonneController">
+   <children>
+      <Label layoutX="184.0" layoutY="125.0" text="nom :">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="184.0" layoutY="191.0" text="prenom :">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="184.0" layoutY="260.0" text="age : ">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtnom" layoutX="328.0" layoutY="126.0" />
+      <TextField fx:id="txtprenom" layoutX="329.0" layoutY="188.0" />
+      <TextField fx:id="txtage" layoutX="330.0" layoutY="261.0" />
+      <Button layoutX="377.0" layoutY="320.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
+      <Button layoutX="462.0" layoutY="320.0" mnemonicParsing="false" onAction="#afficher" text="Afficher" />
+   </children>
+</AnchorPane>
