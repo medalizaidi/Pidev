@@ -4,7 +4,7 @@ import java.sql.*;
 public class Test {
 
     private static Connection con;
-    private static String url = "jdbc:mysql://localhost:3306/esprit1al1";
+    private static String url = "jdbc:mysql://localhost:3306/pidev";
     private static String user = "root";
     private static String pass = "";
     private static Statement stmt;

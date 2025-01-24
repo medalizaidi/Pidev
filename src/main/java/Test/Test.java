@@ -1,44 +1,86 @@
 package Test;
 
-import Entite.Personne;
-import Service.ServicePersonne;
-import TestSingleton.A;
-import TestSingleton.B;
+import Entite.Evenement;
+import Entite.Commentaires;
+import Service.EventService;
+import Service.CommentService;
 
-import java.sql.SQLException;
+import java.sql.Date;
 
 public class Test {
 
     public static void main(String[] args) {
-        A a1 = new A();
-
-        A a2 = new A();
-
-        B b1 = B.getInstance();
-
-        B b2 = B.getInstance();
-
-        System.out.println(a1);
-        System.out.println(a2);
-        System.out.println(b1);
-        System.out.println(b2);
+        EventService eventService = new EventService();
+        CommentService commentService = new CommentService();
 
 
-        ServicePersonne ser=new ServicePersonne();
+        Evenement newEvent = new Evenement();
+        newEvent.setTitre("Conference on AI");
+        newEvent.setDescription("An exciting conference about AI innovations.");
+        newEvent.setDate(Date.valueOf("2025-02-15"));
 
-        Personne p1=new Personne("nom1","prenom1",13);
-
+        System.out.println("Adding a new event:");
         try {
-            ser.ajouter(p1);
-            System.out.println("personne ajoutée");
-        } catch (SQLException e) {
-            System.out.println(e);
+            eventService.addEvent(newEvent);
+            System.out.println("Event added successfully!");
+        } catch (Exception e) {
+            System.out.println("Error adding event: " + e.getMessage());
         }
 
+
+        System.out.println("\nListing all events:");
         try {
-            ser.getAll().forEach(e-> System.out.println(e));
-        } catch (SQLException e) {
-            System.out.println(e);
+            eventService.getAllEvents().forEach(System.out::println);
+        } catch (Exception e) {
+            System.out.println("Error retrieving events: " + e.getMessage());
+        }
+
+        // Updating an event
+        System.out.println("\nUpdating the event with ID 1:");
+        try {
+            Evenement updatedEvent = new Evenement(1, "Updated Conference on AI", "Updated description for the AI conference.", Date.valueOf("2025-03-01"));
+            eventService.updateEvent(updatedEvent);
+            System.out.println("Event updated successfully!");
+        } catch (Exception e) {
+            System.out.println("Error updating event: " + e.getMessage());
+        }
+
+
+        System.out.println("\nListing all events after update:");
+        try {
+            eventService.getAllEvents().forEach(System.out::println);
+        } catch (Exception e) {
+            System.out.println("Error retrieving events: " + e.getMessage());
+        }
+
+
+        System.out.println("\nDeleting the event with ID 1:");
+        try {
+            eventService.deleteEvent(1);
+            System.out.println("Event deleted successfully!");
+        } catch (Exception e) {
+            System.out.println("Error deleting event: " + e.getMessage());
+        }
+
+
+        System.out.println("\nListing all events after deletion:");
+        try {
+            eventService.getAllEvents().forEach(System.out::println);
+        } catch (Exception e) {
+            System.out.println("Error retrieving events: " + e.getMessage());
+        }
+
+        // Test: Retrieve comment by ID
+        System.out.println("\nGetting comment by ID (example ID 1):");
+        try {
+            Commentaires comment = commentService.getCommentById(1);
+            if (comment != null) {
+                System.out.println("Comment found: " + comment);
+            } else {
+                System.out.println("No comment found with ID 1");
+            }
+        } catch (Exception e) {
+            System.out.println("Error retrieving comment: " + e.getMessage());
         }
     }
 }
